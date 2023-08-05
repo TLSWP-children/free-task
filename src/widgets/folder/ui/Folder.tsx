@@ -1,7 +1,8 @@
 import { FolderState } from '@/entities/folder';
 import { FolderTitle } from '@/features/folder/folder-title';
+import { SelectFolderIcon } from '@/features/folder/select-folder-icon';
 import { TaskItem } from '@/features/task/task-item';
-import { Center, InputBase, Stack } from '@mantine/core';
+import { Center, Flex, Stack } from '@mantine/core';
 
 const folderState: FolderState = {
   id: '1',
@@ -32,7 +33,9 @@ const Folder = () => {
   return (
     <Center>
       <Stack maw="64ch" mt="xl" align="flex-start" justify="flex-start">
-        <FolderTitle folder={folderState} />
+        <Flex align="center" gap="sm">
+          <SelectFolderIcon /> <FolderTitle folder={folderState} />
+        </Flex>
         <div>{tasks}</div>
       </Stack>
     </Center>

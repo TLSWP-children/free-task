@@ -6,7 +6,7 @@ import { useOs } from '@mantine/hooks';
 const NavbarSearch = () => {
   const { classes } = useStyles();
   const os = useOs();
-  const kbd = os === 'macos' ? 'Cmd + K' : 'Ctrl + K';
+  const kbd = os === 'macos' ? 'Cmd + K' : 'Ctrl + K'; //⌘
   return (
     <TextInput
       placeholder="Search"

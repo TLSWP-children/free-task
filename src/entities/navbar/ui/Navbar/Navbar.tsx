@@ -1,11 +1,4 @@
-import {
-  Code,
-  Group,
-  Navbar as MantineNavbar,
-  Text,
-  TextInput,
-} from '@mantine/core';
-import { IconSearch } from '@tabler/icons-react';
+import { Group, Navbar as MantineNavbar, Text } from '@mantine/core';
 import { useStyles } from './style';
 import { ReactNode } from 'react';
 

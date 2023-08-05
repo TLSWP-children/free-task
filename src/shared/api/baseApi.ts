@@ -1,6 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQuery } from './baseQuery';
-import { SESSION_TAG } from '.';
+import { SESSION_TAG } from './tags';
 
 export const baseApi = createApi({
   tagTypes: [SESSION_TAG],

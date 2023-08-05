@@ -29,7 +29,6 @@ const FolderTitle = ({ folder }: FolderTitleState) => {
       value={title}
       onChange={setTitle}
       size="xl"
-      ml="30px"
       variant="unstyled"
       placeholder="Название"
     />
