@@ -2,12 +2,11 @@ import { Navbar, NavbarFolder, NavbarMainLink } from '@/entities/navbar';
 import { NavbarCreateFolder } from '@/features/navbar-create-folder';
 import { NavbarSearch } from '@/features/navbar-search';
 
-import { IconBulb, IconUser, IconCheckbox } from '@tabler/icons-react';
+import { IconBulb, IconFolders } from '@tabler/icons-react';
 
 const links = [
   { icon: IconBulb, label: 'Activity', notifications: 3, id: 0 },
-  { icon: IconCheckbox, label: 'Tasks', notifications: 4, id: 1 },
-  { icon: IconUser, label: 'Contacts', id: 2 },
+  { icon: IconFolders, label: 'Templates', id: 2 },
 ];
 
 const folders = [

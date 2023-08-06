@@ -20,7 +20,7 @@ const TaskItem = ({ task }: TaskItemProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps --- effect does not depend on setValue
   }, [task]);
   return (
-    <Flex className={classes.wrapper} align="center">
+    <>
       <Checkbox
         classNames={{ input: classes.checkbox }}
         checked={isDone}
@@ -38,7 +38,7 @@ const TaskItem = ({ task }: TaskItemProps) => {
         variant="unstyled"
         placeholder="TO-DO"
       />
-    </Flex>
+    </>
   );
 };
 

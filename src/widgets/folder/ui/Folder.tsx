@@ -1,7 +1,8 @@
 import { FolderState } from '@/entities/folder';
+import { TaskItem } from '@/entities/task/task-item';
 import { FolderTitle } from '@/features/folder/folder-title';
 import { SelectFolderIcon } from '@/features/folder/select-folder-icon';
-import { TaskItem } from '@/features/task/task-item';
+import { TaskItem as TaskItemTODO } from '@/features/task/task-item';
 import TaskSettingsMenu from '@/features/task/task-settings-menu/ui/TaskSettingsMenu';
 import { Center, Flex, Stack } from '@mantine/core';
 
@@ -29,10 +30,10 @@ const folderState: FolderState = {
 
 const Folder = () => {
   const tasks = folderState.tasks.map((task) => (
-    <Flex key={task.id}>
-      <TaskItem task={task} />
+    <TaskItem key={task.id}>
+      <TaskItemTODO task={task} />
       <TaskSettingsMenu id={task.id} />
-    </Flex>
+    </TaskItem>
   ));
   return (
     <Center>

@@ -1,23 +1,22 @@
-import { ActionIcon, Button, Menu, Text } from '@mantine/core';
+import { ActionIcon, Menu } from '@mantine/core';
 import {
   IconArrowsLeftRight,
+  IconCirclePlus,
   IconDotsVertical,
-  IconMessageCircle,
-  IconPhoto,
-  IconSearch,
-  IconSettings,
   IconTrash,
 } from '@tabler/icons-react';
+import { useStyles } from './style';
 
 interface TaskSettingsMenuProps {
   id: string;
 }
 
 const TaskSettingsMenu = ({ id }: TaskSettingsMenuProps) => {
+  const { classes } = useStyles();
   return (
     <Menu shadow="md" width={200}>
       <Menu.Target>
-        <ActionIcon>
+        <ActionIcon className={classes.icon}>
           <IconDotsVertical />
         </ActionIcon>
       </Menu.Target>
@@ -41,6 +40,7 @@ const TaskSettingsMenu = ({ id }: TaskSettingsMenuProps) => {
         <Menu.Divider />
 
         <Menu.Label>Danger zone</Menu.Label> */}
+        <Menu.Item icon={<IconCirclePlus size={16} />}>Add tag</Menu.Item>
         <Menu.Item icon={<IconArrowsLeftRight size={14} />}>
           Transfer to
         </Menu.Item>
