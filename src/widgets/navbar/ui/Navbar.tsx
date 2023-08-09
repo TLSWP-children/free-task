@@ -1,6 +1,7 @@
 import { Navbar, NavbarFolder, NavbarMainLink } from '@/entities/navbar';
 import { NavbarCreateFolder } from '@/features/navbar-create-folder';
 import { NavbarSearch } from '@/features/navbar-search';
+import { NavbarUserButton } from '@/features/user/navbar-user-button';
 
 import { IconBulb, IconFolders } from '@tabler/icons-react';
 
@@ -32,6 +33,7 @@ const AppNavbar = () => {
 
   return (
     <Navbar
+      user={<NavbarUserButton />}
       search={<NavbarSearch />}
       mainLinks={mainLinks}
       folderLinks={folderLinks}

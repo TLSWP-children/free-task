@@ -1,4 +1,4 @@
-import { Group, Navbar as MantineNavbar, Text } from '@mantine/core';
+import { Box, Group, Navbar as MantineNavbar, Text } from '@mantine/core';
 import { useStyles } from './style';
 import { ReactNode } from 'react';
 
@@ -7,6 +7,7 @@ interface NavbarProps {
   folderLinks: ReactNode;
   createFolderButton: ReactNode;
   search: ReactNode;
+  user: ReactNode;
 }
 
 const Navbar = ({
@@ -14,21 +15,22 @@ const Navbar = ({
   mainLinks,
   folderLinks,
   createFolderButton,
+  user,
 }: NavbarProps) => {
   const { classes } = useStyles();
   return (
-    <MantineNavbar
-      height={700}
-      width={{ sm: 300 }}
-      p="md"
-      className={classes.navbar}
-    >
+    <MantineNavbar width={{ sm: 300 }} p="md" className={classes.navbar}>
       {search}
       <MantineNavbar.Section className={classes.section}>
         <div className={classes.mainLinks}>{mainLinks}</div>
       </MantineNavbar.Section>
 
-      <MantineNavbar.Section className={classes.section}>
+      <MantineNavbar.Section
+        sx={{
+          borderBottom: 'none !important',
+        }}
+        className={classes.section}
+      >
         <Group className={classes.foldersHeader} position="apart">
           <Text size="xs" weight={500} color="dimmed">
             Folders
@@ -37,6 +39,7 @@ const Navbar = ({
         </Group>
         <div className={classes.folders}>{folderLinks}</div>
       </MantineNavbar.Section>
+      <Box mt="auto">{user}</Box>
     </MantineNavbar>
   );
 };

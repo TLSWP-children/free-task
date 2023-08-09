@@ -1,23 +1,29 @@
 import { baseApi, SESSION_TAG } from '@/shared/api';
+import { RequestLoginBody, RequestRegisterBody, SessionDto } from './types';
+import { Session } from '../model/types';
+import { mapSession } from '../lib';
 
 export const sessionApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    login: build.mutation<object, object>({
+    login: build.mutation<Session, RequestLoginBody>({
       query: (body) => ({
-        url: `/login`,
+        url: `/auth/login`,
         method: 'POST',
         body,
       }),
       invalidatesTags: [SESSION_TAG],
+      transformResponse: (response: SessionDto) => mapSession(response),
     }),
-    // TODO: FSD: Move to entities/user/api/userApi.ts
-    me: build.query<object, void>({
-      query: () => ({
-        url: `/me`,
+    register: build.mutation<Session, RequestRegisterBody>({
+      query: (body) => ({
+        url: `/auth/register`,
+        method: 'POST',
+        body,
       }),
-      providesTags: [SESSION_TAG],
+      invalidatesTags: [SESSION_TAG],
+      transformResponse: (response: SessionDto) => mapSession(response),
     }),
   }),
 });
 
-export const { useLoginMutation, useMeQuery } = sessionApi;
+export const { useLoginMutation, useRegisterMutation } = sessionApi;
