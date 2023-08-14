@@ -8,7 +8,7 @@ import {
   PasswordInput,
   TextInput,
 } from '@mantine/core';
-import { useForm } from '@mantine/form';
+import { isNotEmpty, useForm } from '@mantine/form';
 import { redirect } from 'next/navigation';
 
 const LoginForm = () => {
@@ -16,6 +16,10 @@ const LoginForm = () => {
     initialValues: {
       login: '',
       password: '',
+    },
+    validate: {
+      login: isNotEmpty('Enter your login'),
+      password: isNotEmpty('Enter your password'),
     },
   });
   const [login, { isSuccess }] = useLoginMutation();
