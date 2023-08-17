@@ -9,9 +9,7 @@ interface TaskItemProps {
 const TaskItem = ({ children }: TaskItemProps) => {
   const { classes, cx } = useStyles();
   return (
-    <Flex className={cx(classes.wrapper, 'task-wrapper')} align="center">
-      {children}
-    </Flex>
+    <Flex className={cx(classes.wrapper, 'task-wrapper')}>{children}</Flex>
   );
 };
 

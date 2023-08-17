@@ -1,5 +1,6 @@
 import {
   ActionIcon,
+  ActionIconProps,
   Button,
   Menu,
   ScrollArea,
@@ -11,11 +12,17 @@ import { memo, useEffect, useState } from 'react';
 
 interface EmojiPickerProps {
   emoji?: string;
-  initialEmoji: string;
+  initialEmoji?: string;
   onSelect?: (emoji: string) => void;
+  actionIconProps: ActionIconProps;
 }
 
-const EmojiPicker = ({ emoji, initialEmoji, onSelect }: EmojiPickerProps) => {
+const EmojiPicker = ({
+  emoji,
+  initialEmoji,
+  onSelect,
+  actionIconProps,
+}: EmojiPickerProps) => {
   const [selectedEmoji, setSelectedEmoji] = useState(initialEmoji);
   const selectHandler = (newEmoji: string) => {
     setSelectedEmoji(newEmoji);
@@ -24,7 +31,7 @@ const EmojiPicker = ({ emoji, initialEmoji, onSelect }: EmojiPickerProps) => {
   return (
     <Menu shadow="md" width={200}>
       <Menu.Target>
-        <ActionIcon size="xl">
+        <ActionIcon size="xl" {...actionIconProps}>
           <Text size="34px">{emoji || selectedEmoji}</Text>
         </ActionIcon>
       </Menu.Target>

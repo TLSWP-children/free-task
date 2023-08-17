@@ -1,12 +1,15 @@
-import { FolderState } from '@/entities/folder';
-import { TaskItem } from '@/entities/task/task-item';
+import { useFolderByIdQuery } from '@/entities/folder';
+import { TaskItem } from '@/entities/task/';
+import { useTasksQuery } from '@/entities/task/api/taskApi';
 import { FolderTitle } from '@/features/folder/folder-title';
 import { SelectFolderIcon } from '@/features/folder/select-folder-icon';
+import { CreateTask } from '@/features/task/create-task';
 import { TaskItem as TaskItemTODO } from '@/features/task/task-item';
 import TaskSettingsMenu from '@/features/task/task-settings-menu/ui/TaskSettingsMenu';
-import { Center, Flex, Stack } from '@mantine/core';
+import { Center, Flex, Loader, Space, Stack } from '@mantine/core';
+import { useRouter } from 'next/router';
 
-const folderState: FolderState = {
+const folderState = {
   id: '1',
   title: 'Планы на день',
   tasks: [
@@ -29,9 +32,21 @@ const folderState: FolderState = {
 };
 
 const Folder = () => {
-  const tasks = folderState.tasks.map((task) => (
+  const router = useRouter();
+  const id = typeof router.query.id === 'string' ? router.query.id : '';
+
+  const folder = useFolderByIdQuery(id);
+  const task = useTasksQuery(id);
+  if (task.isLoading)
+    return (
+      <Center h="80vh" py="200px">
+        <Loader variant="dots" />
+      </Center>
+    );
+  const taskList = task.isSuccess && task.data ? task.data : [];
+  const tasks = taskList.map((task) => (
     <TaskItem key={task.id}>
-      <TaskItemTODO task={task} />
+      <TaskItemTODO folderID={id} task={task} />
       <TaskSettingsMenu id={task.id} />
     </TaskItem>
   ));
@@ -39,9 +54,15 @@ const Folder = () => {
     <Center>
       <Stack maw="64ch" mt="xl" align="flex-start" justify="flex-start">
         <Flex align="center" gap="sm">
-          <SelectFolderIcon /> <FolderTitle folder={folderState} />
+          {folder.isSuccess && (
+            <>
+              <SelectFolderIcon id={id} /> <FolderTitle id={id} />
+            </>
+          )}
         </Flex>
         <div>{tasks}</div>
+        {<CreateTask id={id} />}
+        <Space h="300px" />
       </Stack>
     </Center>
   );

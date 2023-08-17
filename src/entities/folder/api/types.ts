@@ -1,11 +1,17 @@
-import { ITask } from '@/shared/model';
-
-export interface FolderState {
+export interface FolderItemDto {
   readonly id: string;
   title: string;
-  tasks: ITask[];
+  emoji: string;
+  createdAt: string;
+  updatedAt: string;
 }
-export interface FolderShortState {
-  readonly id: string;
+export interface FolderDto {
+  currentPage: number;
+  total: number;
+  totalPages: number;
+  result: FolderItemDto[];
+}
+export interface RequestCreateFolderBody {
   title: string;
+  emoji: string;
 }

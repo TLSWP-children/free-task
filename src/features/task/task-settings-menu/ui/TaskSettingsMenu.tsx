@@ -6,17 +6,19 @@ import {
   IconTrash,
 } from '@tabler/icons-react';
 import { useStyles } from './style';
+import { useDeleteTaskMutation } from '@/entities/task/api/taskApi';
 
 interface TaskSettingsMenuProps {
   id: string;
 }
 
 const TaskSettingsMenu = ({ id }: TaskSettingsMenuProps) => {
+  const [deleteTask] = useDeleteTaskMutation();
   const { classes } = useStyles();
   return (
     <Menu shadow="md" width={200}>
       <Menu.Target>
-        <ActionIcon className={classes.icon}>
+        <ActionIcon mt="0.4rem" className={classes.icon}>
           <IconDotsVertical />
         </ActionIcon>
       </Menu.Target>
@@ -44,7 +46,11 @@ const TaskSettingsMenu = ({ id }: TaskSettingsMenuProps) => {
         <Menu.Item icon={<IconArrowsLeftRight size={14} />}>
           Transfer to
         </Menu.Item>
-        <Menu.Item color="red" icon={<IconTrash size={14} />}>
+        <Menu.Item
+          onClick={() => deleteTask(id)}
+          color="red"
+          icon={<IconTrash size={14} />}
+        >
           Delete task
         </Menu.Item>
       </Menu.Dropdown>

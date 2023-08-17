@@ -1,21 +1,39 @@
-import { InputBase } from '@mantine/core';
+import { useEditFolderMutation, useFolderByIdQuery } from '@/entities/folder';
+import { InputBase, Skeleton } from '@mantine/core';
 import { useInputState } from '@mantine/hooks';
 import { useEffect } from 'react';
 
-interface FolderTitleState {
-  folder: {
-    title: string;
-    id: string;
-  };
+interface FolderTitleProps {
+  id: string;
 }
 
-const FolderTitle = ({ folder }: FolderTitleState) => {
-  const [title, setTitle] = useInputState(folder.title);
+const FolderTitle = ({ id }: FolderTitleProps) => {
+  const { data, isSuccess, isError, isLoading } = useFolderByIdQuery(id);
+  const [edit] = useEditFolderMutation();
+
+  const [title, setTitle] = useInputState(data?.title || '');
 
   useEffect(() => {
-    setTitle(folder.title);
-    // eslint-disable-next-line react-hooks/exhaustive-deps --- effect does not depend on setTitle
-  }, [folder]);
+    setTitle(data?.title);
+  }, [data]);
+
+  if (isError) return null;
+  if (isLoading)
+    return (
+      <Skeleton my="13px" h="34px">
+        <InputBase
+          variant="unstyled"
+          placeholder="Название"
+          size="md"
+          styles={{
+            input: {
+              fontWeight: 'bold',
+              fontSize: '34px',
+            },
+          }}
+        />
+      </Skeleton>
+    );
 
   return (
     <InputBase
@@ -24,6 +42,9 @@ const FolderTitle = ({ folder }: FolderTitleState) => {
           fontWeight: 'bold',
           fontSize: '34px',
         },
+      }}
+      onBlur={() => {
+        if (isSuccess) edit({ ...data, title });
       }}
       color="dark"
       value={title}
