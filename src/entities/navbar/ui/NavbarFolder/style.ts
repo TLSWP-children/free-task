@@ -14,7 +14,9 @@ export const useStyles = createStyles((theme) => ({
   },
 
   folderLink: {
-    display: 'block',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     padding: `${rem(8)} ${theme.spacing.xs}`,
     textDecoration: 'none',
     borderRadius: theme.radius.sm,

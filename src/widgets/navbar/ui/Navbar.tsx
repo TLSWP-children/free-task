@@ -1,5 +1,6 @@
 import { useFoldersQuery } from '@/entities/folder';
 import { Navbar, NavbarFolder, NavbarMainLink } from '@/entities/navbar';
+import DeleteFolderMenu from '@/features/folder/delete-folder-menu/ui/DeleteFolderMenu';
 import { NavbarCreateFolder } from '@/features/navbar-create-folder';
 import { NavbarSearch } from '@/features/navbar-search';
 import { NavbarUserButton } from '@/features/user/navbar-user-button';
@@ -31,7 +32,11 @@ const AppNavbar = () => {
 
   const folderLinks = folders.isSuccess
     ? folders.data.map((folder) => (
-        <NavbarFolder key={folder.id} folder={folder} />
+        <NavbarFolder
+          key={folder.id}
+          folder={folder}
+          right={<DeleteFolderMenu id={folder.id} />}
+        />
       ))
     : 'loading...';
 

@@ -25,7 +25,7 @@ const NavbarCreateFolder = () => {
         onClick={() =>
           createFolder({
             title: 'New folder',
-            emoji: '⏰',
+            emoji: '🔥',
           })
         }
         loading={isLoading}
