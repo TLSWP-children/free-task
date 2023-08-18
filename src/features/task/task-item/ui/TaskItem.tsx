@@ -43,6 +43,7 @@ const TaskItem = ({ task, folderID }: TaskItemProps) => {
     setIsDone(e.target.checked);
     editTask({
       ...task,
+      title: value,
       isDone: e.target.checked,
     });
   };
