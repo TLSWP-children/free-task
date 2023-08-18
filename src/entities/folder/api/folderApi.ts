@@ -7,7 +7,7 @@ export const folderApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     folders: build.query<FolderItem[], void>({
       query: () => ({
-        url: `/folders/`,
+        url: `/folders?limit=1000`,
       }),
       providesTags: [FOLDER_TAG],
       transformResponse: mapFolder,

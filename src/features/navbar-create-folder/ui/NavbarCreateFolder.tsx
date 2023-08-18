@@ -2,19 +2,21 @@ import { useCreateFolderMutation } from '@/entities/folder';
 import { ActionIcon, Tooltip } from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const NavbarCreateFolder = () => {
   const [createFolder, { isLoading, data, isSuccess }] =
     useCreateFolderMutation();
+  const [isFirstPush, setIsFirstPush] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
-    if (isSuccess && data?.id) {
+    if (isSuccess && data?.id && isFirstPush) {
       router.push({
         pathname: '/folder/[id]',
         query: { id: data.id },
       });
+      setIsFirstPush(false);
     }
   }, [isSuccess, data, router]);
   return (
