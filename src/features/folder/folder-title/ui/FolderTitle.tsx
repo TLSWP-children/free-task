@@ -44,7 +44,7 @@ const FolderTitle = ({ id }: FolderTitleProps) => {
         },
       }}
       onBlur={() => {
-        if (isSuccess) edit({ ...data, title });
+        if (isSuccess) edit({ id: data.id, emoji: data.emoji, title });
       }}
       color="dark"
       value={title}

@@ -6,5 +6,8 @@ export function mapFolder(dto: FolderDto): FolderItem[] {
     id: item.id,
     emoji: item.emoji,
     title: item.title,
+    totalTasks: item.totalTasks,
+    totalTasksIsDone: item.totalTasksIsDone,
+    totalTasksNotDone: item.totalTasksNotDone,
   }));
 }

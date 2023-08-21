@@ -3,6 +3,7 @@ import { IconTrash } from '@tabler/icons-react';
 import { useStyles } from './style';
 import { useDeleteFolderMutation } from '@/entities/folder';
 import { useRouter } from 'next/router';
+import { MouseEventHandler } from 'react';
 
 interface DeleteFolderMenuProps {
   id: string;
@@ -12,7 +13,7 @@ const DeleteFolderMenu = ({ id }: DeleteFolderMenuProps) => {
   const router = useRouter();
   const [deleteTask] = useDeleteFolderMutation();
   const { classes } = useStyles();
-  const deleteHandler = () => {
+  const deleteHandler: MouseEventHandler<HTMLButtonElement> = () => {
     deleteTask(id);
     const routerId = router.query.id;
     console.log(routerId, id);
@@ -23,7 +24,7 @@ const DeleteFolderMenu = ({ id }: DeleteFolderMenuProps) => {
   return (
     <Menu shadow="md" width={200}>
       <Menu.Target>
-        <ActionIcon size="xs" className={classes.icon}>
+        <ActionIcon style={{ zIndex: 10 }} size="xs" className={classes.icon}>
           <IconTrash />
         </ActionIcon>
       </Menu.Target>

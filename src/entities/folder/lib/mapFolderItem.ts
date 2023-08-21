@@ -6,5 +6,8 @@ export function mapFolderItem(dto: FolderItemDto): FolderItem {
     id: dto.id,
     emoji: dto.emoji,
     title: dto.title,
+    totalTasks: dto.totalTasks,
+    totalTasksIsDone: dto.totalTasksIsDone,
+    totalTasksNotDone: dto.totalTasksNotDone,
   };
 }

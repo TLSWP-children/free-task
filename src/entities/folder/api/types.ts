@@ -4,7 +4,15 @@ export interface FolderItemDto {
   emoji: string;
   createdAt: string;
   updatedAt: string;
+  totalTasks: number;
+  totalTasksIsDone: number;
+  totalTasksNotDone: number;
+  author: {
+    login: string;
+    email: string;
+  };
 }
+
 export interface FolderDto {
   currentPage: number;
   total: number;
@@ -12,6 +20,11 @@ export interface FolderDto {
   result: FolderItemDto[];
 }
 export interface RequestCreateFolderBody {
+  title: string;
+  emoji: string;
+}
+export interface RequestEditFolderBody {
+  id: string;
   title: string;
   emoji: string;
 }
