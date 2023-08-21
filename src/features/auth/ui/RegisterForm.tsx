@@ -9,9 +9,10 @@ import {
   TextInput,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 const RegisterForm = () => {
+  const router = useRouter();
   const form = useForm({
     initialValues: {
       email: '',
@@ -21,7 +22,7 @@ const RegisterForm = () => {
     },
   });
   const [register, { isSuccess }] = useRegisterMutation();
-  if (isSuccess) redirect('/');
+  if (isSuccess) router.push('/');
   return (
     <Paper withBorder shadow="md" p={30} mt={30} radius="md">
       <form onSubmit={form.onSubmit(register)}>

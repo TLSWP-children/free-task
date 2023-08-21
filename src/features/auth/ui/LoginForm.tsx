@@ -9,9 +9,10 @@ import {
   TextInput,
 } from '@mantine/core';
 import { isNotEmpty, useForm } from '@mantine/form';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 const LoginForm = () => {
+  const router = useRouter();
   const form = useForm({
     initialValues: {
       login: '',
@@ -23,7 +24,7 @@ const LoginForm = () => {
     },
   });
   const [login, { isSuccess }] = useLoginMutation();
-  if (isSuccess) redirect('/');
+  if (isSuccess) router.push('/');
   return (
     <Paper withBorder shadow="md" p={30} mt={30} radius="md">
       <form onSubmit={form.onSubmit(login)}>
