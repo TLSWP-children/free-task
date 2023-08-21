@@ -1,9 +1,10 @@
 import Head from 'next/head';
 import { Inter } from 'next/font/google';
-import { AppShell, Header } from '@mantine/core';
+import { AppShell, Container, Header } from '@mantine/core';
 import Logo from '@/shared/ui/Logo';
 import { AppNavbar } from '@/widgets/navbar/';
 import { Folder } from '@/widgets/folder';
+import { DashboardFolderList } from '@/widgets/dashboard-folder-list/ui/DashboardFolderList';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -26,7 +27,9 @@ export default function Home() {
           </Header>
         }
       >
-        <Folder />
+        <Container>
+          <DashboardFolderList />
+        </Container>
       </AppShell>
     </>
   );
